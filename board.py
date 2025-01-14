@@ -175,11 +175,12 @@ class element:
 if __name__ == "__main__":
     start = time.time()
     sudoku_problems = "sudoku_1M.csv"
-    reader = Sudoku_reader(sudoku_problems) 
-    for _ in range(1000000):
+    reader = Sudoku_reader(sudoku_problems)
+    n = 1000 
+    for _ in range(n):
         board = Sudokuboard(reader.next_board())
         # print(board)
     end = time.time()
     length = end - start
-    print("It took", length, "seconds solving all problems in", sudoku_problems)
+    print("\nThis algorithm used", length, "seconds solving", n, "sudoku problems!\n")
 
