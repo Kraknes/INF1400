@@ -1,4 +1,5 @@
 from sudoku_reader import Sudoku_reader
+import time
 
 #test
 
@@ -42,18 +43,18 @@ class Board:
 
     def solve(self):
         # Your solving algorithm goes here!
+        self.solved = True
         for square in self.square_lists:
             if square.mapped == True:
                 continue
             else:
                 square.checking_legal_nr()
-                # print(self)
                 if square.number == 0:
+                    self.solved = False
                     break
                 else:
                     continue
-        if self.square_lists[80].number != 0 and self.square_lists[80].mapped == False:         # FIKS DETTE - Dårlig solution, [80] kan være mapped
-            self.solved = True
+
                 
             
                                          
@@ -113,7 +114,6 @@ class Square:
             if len(self.legal_numbers) == 0:
                 self.sudoku.used_squares.append(self)
                 self.sudoku.backtrack_iter += 1
-                # print("\nDette er backtrack iter: ", self.sudoku.backtrack_iter)
                 self.backtrack()
             else:
                 self.insert_number()
@@ -173,9 +173,13 @@ class element:
                 self.illegal_list.append(square.number)
             
 if __name__ == "__main__":
-    # Test code...
-    reader = Sudoku_reader("sudoku_10.csv") 
-    for _ in range(10):
+    start = time.time()
+    sudoku_problems = "sudoku_10.csv"
+    reader = Sudoku_reader(sudoku_problems) 
+    for _ in range(10)
         board = Sudokuboard(reader.next_board())
         print(board)
-    
+    end = time.time()
+    length = end - start
+    print("It took", length, "seconds solving all problems in", sudoku_problems)
+
