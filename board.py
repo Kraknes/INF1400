@@ -177,9 +177,10 @@ if __name__ == "__main__":
     sudoku_problems = "sudoku_1M.csv"
     reader = Sudoku_reader(sudoku_problems)
     n = 1000 
+    print("\nStart of solving", n ,"sudoku problems:\n")
     for _ in range(n):
         board = Sudokuboard(reader.next_board())
-        # print(board)
+        print(board)
     end = time.time()
     length = end - start
     print("\nThis algorithm used", length, "seconds solving", n, "sudoku problems!\n")
