@@ -1,1 +1,1 @@
-
+self.iterator = 0
