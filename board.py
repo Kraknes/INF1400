@@ -2,18 +2,15 @@ from sudoku_reader import Sudoku_reader
 import time
 
 class Board:
-    """_summary_
-
-    Returns:
-        _type_: _description_
+    """
+    Main class inheritence for Sudoboard.
+    Contains three functions: setting up numbers to squares, squares to elements, and solving sudoku.
     """
     
     def __init__(self, nums):
         
-        """_summary_
-
-        Args:
-            nums (_type_): _description_
+        """
+        Initiating the given board to self. Saving the number of rows and columns.
         """
 
         self.n_rows = len(nums[0])
@@ -22,10 +19,8 @@ class Board:
         
     def _set_up_nums(self):
         
-        """_summary_
-
-        Returns:
-            _type_: _description_
+        """
+        Setting up the number to squares, and putting squares back into the sudoko board.
         """
         
         liste = []
@@ -65,9 +60,11 @@ class Board:
 
     def solve(self):
         """
-        
+        Solving algorithm. 
+        Iterating through all squares and check if each square can put a legal number on the board.
+        If a square has no legal values, solved is set to False and solve() is started again. 
         """
-        # Your solving algorithm goes here!
+        
         self.solved = True
         for square in self.square_lists:
             if square.number != 0:
@@ -128,6 +125,7 @@ class Square:
         self.legal_numbers = [1,2,3,4,5,6,7,8,9]
         self.sudoku = sudoku
         self.iterator = 0
+        
     def checking_legal_nr(self):
         
         """
