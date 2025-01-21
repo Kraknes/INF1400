@@ -18,31 +18,10 @@ class Board:
         self.nums = nums
         
     def _set_up_nums(self):
-        
-        """
-        Setting up the number to squares, and putting squares back into the sudoko board.
-        """
-        
-        liste = []
-        for i in range(self.n_cols):
-            for j in range(self.n_rows):
-                s = Square(self)
-                s.number = self.nums[i][j]
-                self.nums[i][j] = s
-                liste.append(s)
-        return liste
+        pass
 
     def _set_up_elems(self):
-        
-        """
-        Setting up 9x elements of row, column and box. 
-        
-        """
-
-        for _ in range(9):
-            self.row_list.append(Element()) 
-            self.column_list.append(Element())
-            self.box_list.append(Element())
+       pass
             
     def solve(self):
         """
@@ -89,16 +68,35 @@ class Sudokuboard(Board):
         super().__init__(nums)
         self.solved = 0
         self.used_squares, self.row_list, self.column_list, self.box_list = [], [], [], []
-        self.square_lists = super()._set_up_nums()
-        super()._set_up_elems()
-        self.square_to_elems()
+        self.square_lists = self._set_up_nums()
+        self._set_up_elems()
         while self.solved == 0:
             super().solve()
 
-    def square_to_elems(self):
+    def _set_up_nums(self):    
         """
+        Setting up the number to squares, and putting squares back into the sudoko board.
+        """
+        liste = []
+        for i in range(self.n_cols):
+            for j in range(self.n_rows):
+                s = Square(self)
+                s.number = self.nums[i][j]
+                self.nums[i][j] = s
+                liste.append(s)
+        return liste
+
+    def _set_up_elems(self):
+        """
+        Setting up 9x elements of row, column and box. 
         Using the lists of all squares, and appends them to its respective row, column and box elements
         """
+
+        for _ in range(9):
+            self.row_list.append(Element()) 
+            self.column_list.append(Element())
+            self.box_list.append(Element())
+
         for i, s in enumerate(self.square_lists):
             s.column = self.column_list[i%9]
             s.row = self.row_list[int(i/9)]
