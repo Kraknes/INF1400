@@ -36,28 +36,14 @@ class Board:
         
         """
         Setting up 9x elements of row, column and box. 
-        Using the lists of all squares, and appends them to its respective row, column and box elements
         
         """
 
-        for k in range(9):
+        for _ in range(9):
             self.row_list.append(Element()) 
             self.column_list.append(Element())
             self.box_list.append(Element())
             
-        for i, s in enumerate(self.square_lists):
-            s.column = self.column_list[i%9]
-            s.row = self.row_list[int(i/9)]
-            s.box = self.box_list[int((i%9)/3)+(int((i/9)/3)*3)]
-            s.column.squares_in_element.append(s)
-            s.row.squares_in_element.append(s)
-            s.box.squares_in_element.append(s)
-                   
-        for j in range(9):
-            self.row_list[j].illegal_numbers()
-            self.column_list[j].illegal_numbers()
-            self.box_list[j].illegal_numbers()
-
     def solve(self):
         """
         Solving algorithm. 
@@ -105,9 +91,26 @@ class Sudokuboard(Board):
         self.used_squares, self.row_list, self.column_list, self.box_list = [], [], [], []
         self.square_lists = super()._set_up_nums()
         super()._set_up_elems()
-        super().__str__()
+        self.square_to_elems()
         while self.solved == 0:
             super().solve()
+
+    def square_to_elems(self):
+        """
+        Using the lists of all squares, and appends them to its respective row, column and box elements
+        """
+        for i, s in enumerate(self.square_lists):
+            s.column = self.column_list[i%9]
+            s.row = self.row_list[int(i/9)]
+            s.box = self.box_list[int((i%9)/3)+(int((i/9)/3)*3)]
+            s.column.squares_in_element.append(s)
+            s.row.squares_in_element.append(s)
+            s.box.squares_in_element.append(s)
+                   
+        for j in range(9):
+            self.row_list[j].illegal_numbers()
+            self.column_list[j].illegal_numbers()
+            self.box_list[j].illegal_numbers()
             
 class Square:
     
@@ -234,7 +237,7 @@ if __name__ == "__main__":
     print("\nStart of solving", N ,"sudoku problems:\n")
     for _ in range(N):
         board = Sudokuboard(reader.next_board())
-        # print(board)
+        print(board)
     end = time.time()
     length = end - start
     print("\nThis algorithm used", length, "seconds solving", N, "sudoku problems!\n")
