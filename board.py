@@ -24,23 +24,7 @@ class Board:
        pass
             
     def solve(self):
-        """
-        Solving algorithm. 
-        Iterating through all squares and check if each square can put a legal number on the board.
-        If a square has no legal values, solved is set to False and solve() is started again. 
-        """
-        
-        self.solved = True
-        for square in self.square_lists:
-            if square.number != 0:
-                continue
-            else:
-                square.checking_legal_nr()
-                if square.number == 0:
-                    self.solved = False
-                    break
-                else:
-                    continue
+        pass
 
     def __str__(self):
         r = "Board with " + str(self.n_rows) + " rows and " + str(self.n_cols) + " columns:\n"
@@ -71,7 +55,7 @@ class Sudokuboard(Board):
         self.square_lists = self._set_up_nums()
         self._set_up_elems()
         while self.solved == 0:
-            super().solve()
+            self.Solve()
 
     def _set_up_nums(self):    
         """
@@ -110,6 +94,24 @@ class Sudokuboard(Board):
             self.column_list[j].illegal_numbers()
             self.box_list[j].illegal_numbers()
             
+    def Solve(self):
+        """
+        Solving algorithm. 
+        Iterating through all squares and check if each square can put a legal number on the board.
+        If a square has no legal values, solved is set to False and solve() is started again. 
+        """
+        self.solved = True
+        for square in self.square_lists:
+            if square.number != 0:
+                continue
+            else:
+                square.checking_legal_nr()
+                if square.number == 0:
+                    self.solved = False
+                    break
+                else:
+                    continue
+        
 class Square:
     
     """
