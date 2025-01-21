@@ -40,8 +40,8 @@ class Board:
         
         """
 
-        for _ in range(9):
-            self.row_list.append(Element())
+        for k in range(9):
+            self.row_list.append(Element()) 
             self.column_list.append(Element())
             self.box_list.append(Element())
             
