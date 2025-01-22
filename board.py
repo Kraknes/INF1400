@@ -1,6 +1,6 @@
 from sudoku_reader import Sudoku_reader
 import time
-# test gitub
+
 
 
 class Board:
@@ -23,7 +23,7 @@ class Board:
         pass
 
     def _set_up_elems(self):
-       pass
+        pass
             
     def solve(self):
         pass
